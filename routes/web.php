@@ -29,5 +29,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/createTicket', [App\Http\Controllers\commonUserController::class, 'CreateTicket'])->middleware('auth')->name('createTicket');
 
-Route::post('/saveTicket', [commonUserController::class, 'saveTicket'])->name('saveTicket');
+Route::post('/saveTicket', [commonUserController::class, 'saveTicket'])->middleware('auth')->name('saveTicket');
 
