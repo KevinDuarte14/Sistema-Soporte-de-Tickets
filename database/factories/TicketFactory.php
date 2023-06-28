@@ -1,10 +1,11 @@
 <?php
 
 namespace Database\Factories;
-
+use HasFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-Use App\Models\User;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Foundation\Testing\WithFaker;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Ticket>
@@ -22,7 +23,6 @@ class TicketFactory extends Factory
             'titulo' => $this->faker()->sentence(30),
             'descripcion' => $this->faker()->paragraph(),
             'estado' => $this->randomElement(['Abierto','Cerrado']),
-            'id_usuario' => User:: inRandomOrder()->first()   ,
            
         ];
     }

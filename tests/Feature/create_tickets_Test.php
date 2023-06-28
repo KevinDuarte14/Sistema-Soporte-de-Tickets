@@ -18,18 +18,30 @@ class create_tickets_Test extends TestCase
     use RefreshDatabase;
     public function test_create_ticket(): void
     {
-        $userlogin = User::factory()->create();
-        $this->actingAs($userlogin);
+
+        $user = User::factory()->create();
+        $this->actingAs($user);
         
-        
-        $data['titulo'] = 'Raton';
-        $data['descripcion'] = 'Lorem';
-        $data['estado'] = 'Cerrado';
-        $data['id_usuario'] = 1;
-       
-        $response = $this->post(route('saveTicket'), $data);
+        $ticket =[
+            'titulo' => 'Mouse',
+            'descripcion' => 'Tengo un problema',
+            'estado' => 'Abierto',
+            'id_usuario' =>  $user->id,
+                
+        ];
+
+
+
+        $response = $this->post(route('saveTicket'), $ticket);
+        $this->assertDatabaseHas('tickets', $ticket);
         $response->assertRedirect('misTickets');
+    
+    
+ 
+        
+    }
+       
         
     }
     
-}
+
